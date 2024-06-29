@@ -20,7 +20,7 @@ int main()
         return -1;
     }
     hci_power_control(HCI_POWER_ON);
-
+btstack_main();
  
     while (1)
     {
