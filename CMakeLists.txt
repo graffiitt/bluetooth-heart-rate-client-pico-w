@@ -4,11 +4,6 @@ include(pico_sdk_import.cmake)
 
 project(hrt_client C CXX ASM)
 
-set(BTSTACK_ROOT ${PICO_SDK_PATH}/lib/btstack)
-set(BTSTACK_EXAMPLE_PATH ${BTSTACK_ROOT}/example)
-set(BTSTACK_3RD_PARTY_PATH ${BTSTACK_ROOT}/3rd-party)
-set(BT_EXAMPLE_COMMON_DIR "${CMAKE_CURRENT_LIST_DIR}")
-
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 #set(CMAKE_BUILD_TYPE Release)

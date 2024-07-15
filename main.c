@@ -10,7 +10,8 @@
 #include "pico/stdlib.h"
 #include <inttypes.h>
 
- 
+extern int btstack_mains();
+
 int main()
 {
     stdio_init_all();
@@ -20,8 +21,8 @@ int main()
         return -1;
     }
     hci_power_control(HCI_POWER_ON);
-btstack_main();
- 
+    btstack_mains();
+
     while (1)
     {
         /* code */
