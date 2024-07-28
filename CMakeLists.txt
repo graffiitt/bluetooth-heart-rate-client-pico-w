@@ -2,36 +2,21 @@ cmake_minimum_required(VERSION 3.13)
 set(PICO_BOARD pico_w)
 include(pico_sdk_import.cmake)
 
-project(hrt_client C CXX ASM)
+project(ble_client C CXX ASM)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 pico_sdk_init()
 
-file(GLOB CPPFILE "*.c")
-message("Adding ${PROJECT_NAME} C files: " )
-foreach(source ${CPPFILE})
-    message("  - " ${source})
-endforeach(source)
-
-file(GLOB HFILE "*.h")
-message("Adding ${PROJECT_NAME} H files: " )
-foreach(source ${HFILE})
-    message("  - " ${source})
-endforeach(source)
-
+ 
 add_executable(${PROJECT_NAME}
-${CPPFILE}
-${HFILE}
+main.c
 )
-
+add_subdirectory(bluetooth)
 target_link_libraries(${PROJECT_NAME}
 pico_stdlib
-#pico_btstack_classic
-pico_btstack_ble
-pico_btstack_cyw43
-pico_cyw43_arch_none
+ble_tools
 hardware_adc
     )
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -44,4 +29,4 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
 
 pico_add_extra_outputs(${PROJECT_NAME})
 pico_enable_stdio_usb(${PROJECT_NAME} 1)
-#pico_enable_stdio_uart(blink 1)
+pico_enable_stdio_uart(${PROJECT_NAME} 0)
